@@ -72,12 +72,12 @@ public class MainActivity extends AppCompatActivity {
                 isTestRunning = false;
                 listViewHandler.removeCallbacks(runnableCode);
 
-                if (magneticFieldHandler.isScanSuccessfullyFinished() && wifiHandler.isScanSuccessfullyFinished() && bluetoothHandler.isScanSuccessfullyFinished()) {
+//                if (magneticFieldHandler.isScanSuccessfullyFinished() && wifiHandler.isScanSuccessfullyFinished() && bluetoothHandler.isScanSuccessfullyFinished()) {
                     notificationSound.playSuccessSound();
-                }
-                else{
-                    notificationSound.playErrorSound();
-                }
+//                }
+//                else{
+//                    notificationSound.playErrorSound();
+//                }
 
                 // Get the intent that started this activity
                 Intent intent = getIntent();
@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
                     result.putExtra("MF", String.valueOf(magneticFieldHandler.isScanSuccessfullyFinished()));
                     result.putExtra("WIFI", String.valueOf(wifiHandler.isScanSuccessfullyFinished()));
                     result.putExtra("BT", String.valueOf(bluetoothHandler.isScanSuccessfullyFinished()));
+                    result.putExtra("CELL", String.valueOf(cellScanner.isScanSuccessfullyFinished()));
                     setResult(Activity.RESULT_OK, result);
                     finish();
                 }
@@ -198,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         else{
                             cellScanner.setScanFinished(true);
-                            cellScanner.setScanSuccessfullyFinished(true);
+                            cellScanner.setScanSuccessfullyFinished(false);
                         }
 
                         if (checkBoxMf.isChecked()) {
@@ -206,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         else{
                             magneticFieldHandler.setScanFinished(true);
-                            magneticFieldHandler.setScanSuccessfullyFinished(true);
+                            magneticFieldHandler.setScanSuccessfullyFinished(false);
                         }
 
                         if (checkBoxWifi.isChecked()){
@@ -214,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         else{
                             wifiHandler.setWifiScanFinished(true);
-                            wifiHandler.setScanSuccessfullyFinished(true);
+                            wifiHandler.setScanSuccessfullyFinished(false);
                         }
 
                         if (checkBoxBt.isChecked()){
@@ -222,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         else{
                             bluetoothHandler.setBtScanFinished(true);
-                            bluetoothHandler.setScanSuccessfullyFinished(true);
+                            bluetoothHandler.setScanSuccessfullyFinished(false);
                         }
 
                         isTestRunning = true;
