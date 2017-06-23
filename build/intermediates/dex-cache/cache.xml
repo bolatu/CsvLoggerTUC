@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/bolatu/.android-sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.0/support-annotations-23.1.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="92e3fc113ec3ee36b64603a38857b95700025633">
+        <dex dex="/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.0_caf2714e79f04afa70ca55b4f4bc0f7cb5962021.jar" />
+    </item>
+    <item
+        jar="/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/libs/internal_impl-23.1.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="8716243bf04bae8d6c9ca94d27b9a9be7236f0a3">
+        <dex dex="/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.0_29a5b9a4a767ba1c2ba8ce776a1cdede543a588c.jar" />
+    </item>
+    <item
+        jar="/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/libs/commons-math3-3.5.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="13af68e9a11576953f5c4b09436f8207be9d3a27">
+        <dex dex="/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/pre-dexed/debug/commons-math3-3.5_09bbdc75933e2b011cf6bd81980bb9dd2e0409a4.jar" />
+    </item>
+    <item
+        jar="/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="57ae0d750ff83f0c738d21720224ac7ea866a094">
+        <dex dex="/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.1.0_89b2b15f8ec96de71f74a1bd71b41e2963ad4b84.jar" />
+    </item>
+    <item
+        jar="/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="ddde541c289c8b816a8f8fd6c325d80788c522a6">
+        <dex dex="/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.1.0_cd569471cca1a268e84fc0b403afa61ea7bc8d92.jar" />
+    </item>
+
+</items>
