@@ -51,7 +51,7 @@
             android:layout_width="180dp"
             android:layout_height="30dp"
             android:layout_column="0"
-            android:layout_row="2"
+            android:layout_row="3"
             android:gravity="center"
             android:text="Scan No" />
 
@@ -75,7 +75,7 @@
             android:layout_columnSpan="2"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="20dp"
-            android:layout_row="2"
+            android:layout_row="3"
             android:ems="10"
             android:gravity="center"
             android:inputType="number" />
@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_column="1"
             android:layout_gravity="center_horizontal"
-            android:layout_row="3"
+            android:layout_row="4"
             android:checked="false"
             android:gravity="center"
             android:text="MF" />
@@ -98,7 +98,7 @@
             android:layout_column="0"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="10dp"
-            android:layout_row="3"
+            android:layout_row="4"
             android:checked="false"
             android:gravity="center"
             android:text="WIFI" />
@@ -111,19 +111,19 @@
             android:layout_columnSpan="1"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="20dp"
-            android:layout_row="4"
+            android:layout_row="5"
             android:checked="false"
             android:gravity="center"
             android:text="Cell" />
 
         <Button
             android:id="@+id/buttonStart"
-            android:layout_width="150dp"
+            android:layout_width="210dp"
             android:layout_height="wrap_content"
             android:layout_column="0"
             android:layout_columnSpan="2"
             android:layout_gravity="center_horizontal"
-            android:layout_row="5"
+            android:layout_row="6"
             android:text="START" />
 
         <ListView
@@ -134,7 +134,7 @@
             android:layout_columnSpan="2"
             android:layout_marginBottom="30dp"
             android:layout_marginTop="30dp"
-            android:layout_row="6" />
+            android:layout_row="7" />
 
         <CheckBox
             android:id="@+id/checkBoxBt"
@@ -144,10 +144,31 @@
             android:layout_columnSpan="1"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="20dp"
-            android:layout_row="4"
+            android:layout_row="5"
             android:checked="false"
             android:gravity="center"
             android:text="BT" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="180dp"
+            android:layout_height="30dp"
+            android:layout_column="0"
+            android:layout_row="2"
+            android:gravity="center"
+            android:text="Floor" />
+
+        <EditText
+            android:id="@+id/editTextFloor"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_columnSpan="2"
+            android:layout_gravity="center_horizontal"
+            android:layout_row="2"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="number" />
     </GridLayout>
 
 </RelativeLayout>

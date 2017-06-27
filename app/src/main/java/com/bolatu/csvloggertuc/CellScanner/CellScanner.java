@@ -33,32 +33,17 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class CellScanner implements IHaltable {
 
-    private TimeStampHandler timeStampHandler = new TimeStampHandler();
-
-    private long timestampOfDetection;
-    private String convertedTimestamp;
-
     private boolean isScanFinished = false;
     private boolean isScanSuccessfullyFinished = false;
 
     AccessPointParser accessPointParser;
 
-    private LinkedHashMap<String, LinkedList<HashMap<Integer, String>>> sortedWifiScanResults = new LinkedHashMap<>();
-    private HashMap<String, String> currentWifiScanResultList = new HashMap<>();
-
-    private String rawWifiScanResults = "";
-
-    private CsvHandler csvHandler;
+    private LinkedHashMap<String, LinkedList<HashMap<Integer, String>>> sortedCellScanResults = new LinkedHashMap<>();
+    private HashMap<String, String> currentCellScanResultList = new HashMap<>();
 
     private int scanCounter = 0;
     private int scanCounterTimeout = 0;
 
-//    public static final String ACTION_BASE = AppGlobals.ACTION_NAMESPACE + ".CellScanner.";
-//    public static final String ACTION_CELLS_SCANNED = ACTION_BASE + "CELLS_SCANNED";
-    public static final String ACTION_CELLS_SCANNED_ARG_CELLS = "cells";
-//    public static final String ACTION_CELLS_SCANNED_ARG_TIME = AppGlobals.ACTION_ARG_TIME;
-
-    private static final int MAX_SCANS_PER_GPS = 2;
     private static final long CELL_MIN_UPDATE_TIME = 2000; // milliseconds
 
     private final Context mAppContext;
@@ -110,14 +95,9 @@ public class CellScanner implements IHaltable {
                         return;
                     }
 
-//                    if (mScanCount.incrementAndGet() > MAX_SCANS_PER_GPS) {
-//                        stop();
-//                        return;
-//                    }
 
                     final long curTime = System.currentTimeMillis();
                     ArrayList<CellInfo> cells = new ArrayList<CellInfo>(mSimpleCellScanner.getCellInfo());
-                    Log.d("CellularScan:", cells.toString());
 
                     if (mReportWasFlushed.getAndSet(false)) {
                         clearCells();
@@ -130,16 +110,13 @@ public class CellScanner implements IHaltable {
 
                     for (CellInfo cell : cells) {
                         addToCells(cell.getCellIdentity());
-                        currentWifiScanResultList.put(cell.getCellIdentity(),
-                                cell.getCellRadio());
-                        Log.d("CellularScan:", cell.getCellIdentity());
-                        currentWifiScanResultList.put(cell.getCellIdentity(),
+                        Log.d("CellularScan:", cell.getCellIdentity() + String.valueOf(cell.getSignalStrength()));
+                        currentCellScanResultList.put(cell.getCellIdentity(),
                                 String.valueOf(cell.getSignalStrength()));
                     }
 
-                    String convertedMaxTimestamp = timeStampHandler.convertTimestamp(timestampOfDetection);
 
-                    sortedWifiScanResults = accessPointParser.sortBtScanResults(currentWifiScanResultList, scanCounter);
+                    sortedCellScanResults = accessPointParser.sortBtScanResults(currentCellScanResultList, scanCounter);
 
                     scanCounter++;
 
@@ -151,14 +128,6 @@ public class CellScanner implements IHaltable {
                         stop();
                     }
 
-
-//                Intent intent = new Intent(ACTION_CELLS_SCANNED);
-//                intent.putParcelableArrayListExtra(ACTION_CELLS_SCANNED_ARG_CELLS, cells);
-//                intent.putExtra(ACTION_CELLS_SCANNED_ARG_TIME, curTime);
-//                // send to handler, so broadcast is not from timer thread
-//                Message message = new Message();
-//                message.obj = intent;
-//                mBroadcastScannedHandler.sendMessage(message);
                 }
             }, 0, CELL_MIN_UPDATE_TIME);
         }
@@ -188,8 +157,8 @@ public class CellScanner implements IHaltable {
         }
         mSimpleCellScanner.stop();
 
-        accessPointParser.convertToCsv(sortedWifiScanResults, scanCounter);
-        sortedWifiScanResults.clear();
+        accessPointParser.convertToCsv(sortedCellScanResults, scanCounter);
+        sortedCellScanResults.clear();
         isScanSuccessfullyFinished = true;
         scanCounter = 0;
     }
@@ -219,5 +188,12 @@ public class CellScanner implements IHaltable {
 
     public void setScanSuccessfullyFinished(boolean ScanSuccessfullyFinished) {
         isScanSuccessfullyFinished = ScanSuccessfullyFinished;
+    }
+    public int getScanCounterTimeout() {
+        return scanCounterTimeout;
+    }
+
+    public int getScanCounter() {
+        return scanCounter;
     }
 }
