@@ -43,7 +43,7 @@ public class AccessPointParser {
         tempSortedScanResults = sortedScanResults;
 
         // Preparing the Wifi Header
-        String csvHeader = "Coor X,Coor Y,CURRENT TIME NANOSECONDS,CURRENT TIME STRING,";
+        String csvHeader = "Coor X,Coor Y,Floor,CURRENT TIME NANOSECONDS,CURRENT TIME STRING,";
         for (String sortedHashMapKey : sortedScanResults.keySet()) {
             csvHeader += sortedHashMapKey + ",";
         }
@@ -85,7 +85,7 @@ public class AccessPointParser {
         // converting sortedScanResults into csv format
         String rows = "";
         for (int i = 0; i < scanCounter; i++) {
-            rows += MainActivity.coorX + "," + MainActivity.coorY + "," + timeStampHolderNanoseconds.get(i) + "," + timeStampHolderString.get(i) + ",";
+            rows += MainActivity.coorX + "," + MainActivity.coorY + "," + MainActivity.floor + "," + timeStampHolderNanoseconds.get(i) + "," + timeStampHolderString.get(i) + ",";
             for (String ssid : sortedScanResults.keySet()) {
                 rows += sortedScanResults.get(ssid).get(i).get(i) + ",";
             }

@@ -18,7 +18,7 @@ public class CsvHandler {
     public static final int CELL = 4;
 
     private String mfHeaderCsv =
-            "Coor X," + "Coor Y," + "CURRENT TIME NANOSECONDS," +"CURRENT TIME STRING," + "SYSTIME NANOSECONDS," + "SYSTIME STRING," +
+            "Coor X," + "Coor Y," + "Floor," + "CURRENT TIME NANOSECONDS," +"CURRENT TIME STRING," + "SYSTIME NANOSECONDS," + "SYSTIME STRING," +
                     "LOCAL MF X,LOCAL MF Y,LOCAL MF Z,"+
                     "NATIVE ORIENTATION X,NATIVE ORIENTATION Y,NATIVE ORIENTATION Z," +
                     "ACCELERATION X,ACCELERATION Y,ACCELERATION Z," +
@@ -26,7 +26,7 @@ public class CsvHandler {
                     "ROT X,ROT Y,ROT Z\n";
 
     private File sdCard = Environment.getExternalStorageDirectory();
-    private File dir = new File(sdCard.getAbsolutePath() + "/GezkonWalkingLogger");
+    private File dir = new File(sdCard.getAbsolutePath() + "/CsvLoggerTUC");
     private File fileCsv;
 
 
@@ -56,7 +56,7 @@ public class CsvHandler {
         if (!fileCsv.exists()) {
             dir.mkdir();
             fileCsv.createNewFile();
-            FileWriter fileWriter = new FileWriter(sdCard.getAbsolutePath() + "/GezkonWalkingLogger/" + fileCsv.getName());
+            FileWriter fileWriter = new FileWriter(sdCard.getAbsolutePath() + "/CsvLoggerTUC/" + fileCsv.getName());
             BufferedWriter bufferWriter = new BufferedWriter(fileWriter);
             bufferWriter.write(content);
             bufferWriter.close();
@@ -65,7 +65,7 @@ public class CsvHandler {
 
 
     public void write(String content) throws IOException {
-        FileWriter fileWriter = new FileWriter(sdCard.getAbsolutePath() + "/GezkonWalkingLogger/" + fileCsv.getName(), true);
+        FileWriter fileWriter = new FileWriter(sdCard.getAbsolutePath() + "/CsvLoggerTUC/" + fileCsv.getName(), true);
         BufferedWriter bufferWriter = new BufferedWriter(fileWriter);
         bufferWriter.write(content);
         bufferWriter.close();
