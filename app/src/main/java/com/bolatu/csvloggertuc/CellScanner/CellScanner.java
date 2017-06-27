@@ -66,6 +66,8 @@ public class CellScanner implements IHaltable {
 
     public void start() {
         if (!mSimpleCellScanner.isSupportedOnThisDevice()) {
+            isScanFinished = true;
+            isScanSuccessfullyFinished = false;
             return;
         }
 

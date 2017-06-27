@@ -40,24 +40,24 @@ public class MagneticFieldHandler implements SensorEventListener {
     private Sensor rotationSensor;
     private Sensor orientationSensor;
     private Sensor acceSensor;
-
+    private Sensor gyroSensor;
     private double localMfX;
     private double localMfY;
     private double localMfZ;
     private float magnetic[] = new float[3];
     private String mfDataCsv;
 
-    private double orientationX;
-    private double orientationY;
-    private double orientationZ;
+    private double orientationX = 0;
+    private double orientationY = 0;
+    private double orientationZ = 0;
 
-    private double acceX;
-    private double acceY;
-    private double acceZ;
+    private double acceX = 0;
+    private double acceY = 0;
+    private double acceZ = 0;
 
-    private double rotX;
-    private double rotY;
-    private double rotZ;
+    private double rotX = 0;
+    private double rotY = 0;
+    private double rotZ = 0;
 
     private long timestampOfMfDetection;
     private String convertedMfTimestamp;
@@ -71,9 +71,9 @@ public class MagneticFieldHandler implements SensorEventListener {
     private int scanCounter = 0;
 
     private Orientation orientationGyro;
-    private double gyroOrientationX;
-    private double gyroOrientationY;
-    private double gyroOrientationZ;
+    private double gyroOrientationX = 0;
+    private double gyroOrientationY = 0;
+    private double gyroOrientationZ = 0;
 
 
     // Constructor
@@ -95,19 +95,48 @@ public class MagneticFieldHandler implements SensorEventListener {
         csvHandler = new CsvHandler(CsvHandler.MAGNETIC_FIELD);
 
         sensorManager = (SensorManager) mContext.getSystemService(Context.SENSOR_SERVICE);
+//        if (Sensor.TYPE_MAGNETIC_FIELD != null) {
         magneticField = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
         rotationSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
         orientationSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
         acceSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-
-        sensorManager.registerListener(this, magneticField, SensorManager.SENSOR_DELAY_FASTEST);
-        sensorManager.registerListener(this, rotationSensor, SensorManager.SENSOR_DELAY_FASTEST);
-        sensorManager.registerListener(this, orientationSensor, SensorManager.SENSOR_DELAY_FASTEST);
-        sensorManager.registerListener(this, acceSensor, SensorManager.SENSOR_DELAY_FASTEST);
+        gyroSensor = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
 
 
-        orientationGyro = new GyroscopeOrientation(mContext);
-        orientationGyro.onResume();
+        if (magneticField != null) {
+            sensorManager.registerListener(this, magneticField, SensorManager.SENSOR_DELAY_FASTEST);
+        }
+        else {
+            isMfReceived = true;
+        }
+
+        if (rotationSensor != null) {
+            sensorManager.registerListener(this, rotationSensor, SensorManager.SENSOR_DELAY_FASTEST);
+        }
+        else {
+            isRotationVectorReceived = true;
+        }
+
+        if (orientationSensor != null) {
+            sensorManager.registerListener(this, orientationSensor, SensorManager.SENSOR_DELAY_FASTEST);
+        }
+        else {
+            isOrientationReceived = true;
+        }
+
+        if (acceSensor != null) {
+            sensorManager.registerListener(this, acceSensor, SensorManager.SENSOR_DELAY_FASTEST);
+        }
+        else {
+            isAcceReceived = true;
+        }
+
+        if (gyroSensor != null) {
+            orientationGyro = new GyroscopeOrientation(mContext);
+            orientationGyro.onResume();
+        }
+
+
 
 //        scanMagneticField();
     }
@@ -132,51 +161,71 @@ public class MagneticFieldHandler implements SensorEventListener {
     public void onSensorChanged(SensorEvent sensorEvent) {
         Sensor sensor = sensorEvent.sensor;
         // If the received results are MF variables, then we take them
-        if (sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
-            timestampOfMfDetection = sensorEvent.timestamp;
+        if (magneticField != null) {
+            if (sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
+                timestampOfMfDetection = sensorEvent.timestamp;
+                isMfReceived = true;
+
+                magnetic[0] = sensorEvent.values[0];
+                magnetic[1] = sensorEvent.values[1];
+                magnetic[2] = sensorEvent.values[2];
+
+                localMfX = magnetic[0];
+                localMfY = magnetic[1];
+                localMfZ = magnetic[2];
+            }
+        }
+        else{
             isMfReceived = true;
-
-            magnetic[0] = sensorEvent.values[0];
-            magnetic[1] = sensorEvent.values[1];
-            magnetic[2] = sensorEvent.values[2];
-
-            localMfX = magnetic[0];
-            localMfY = magnetic[1];
-            localMfZ = magnetic[2];
         }
 
-        else if (sensor.getType() == Sensor.TYPE_ORIENTATION) {
-            timestampOfOrientationDetection = sensorEvent.timestamp;
+        if (orientationSensor != null) {
+            if (sensor.getType() == Sensor.TYPE_ORIENTATION) {
+                timestampOfOrientationDetection = sensorEvent.timestamp;
+                isOrientationReceived = true;
+
+                orientationX = sensorEvent.values[1];
+                orientationY = sensorEvent.values[2];
+                orientationZ = sensorEvent.values[0];
+            }
+        }
+        else{
             isOrientationReceived = true;
-
-            orientationX = sensorEvent.values[1];
-            orientationY = sensorEvent.values[2];
-            orientationZ = sensorEvent.values[0];
         }
 
-        else if (sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-            timestampOfAcceDetection = sensorEvent.timestamp;
+        if (acceSensor != null) {
+            if (sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+                timestampOfAcceDetection = sensorEvent.timestamp;
+                isAcceReceived = true;
+
+                acceX = sensorEvent.values[0];
+                acceY = sensorEvent.values[1];
+                acceZ = sensorEvent.values[2];
+            }
+        }
+        else {
             isAcceReceived = true;
-
-            acceX = sensorEvent.values[0];
-            acceY = sensorEvent.values[1];
-            acceZ = sensorEvent.values[2];
         }
 
-        else if (sensor.getType() == Sensor.TYPE_ROTATION_VECTOR){
-            timestampOfRotationVectorDetection = sensorEvent.timestamp;
+        if (rotationSensor != null) {
+            if (sensor.getType() == Sensor.TYPE_ROTATION_VECTOR) {
+                timestampOfRotationVectorDetection = sensorEvent.timestamp;
+                isRotationVectorReceived = true;
+
+                float[] orientation = new float[3];
+                float[] rMat = new float[9];
+
+                // calculate th rotation matrix
+                SensorManager.getRotationMatrixFromVector(rMat, sensorEvent.values);
+                SensorManager.getOrientation(rMat, orientation);
+
+                rotX = Math.toDegrees(orientation[1]);
+                rotY = Math.toDegrees(orientation[2]);
+                rotZ = Math.toDegrees(orientation[0]);
+            }
+        }
+        else {
             isRotationVectorReceived = true;
-
-            float[] orientation = new float[3];
-            float[] rMat = new float[9];
-
-            // calculate th rotation matrix
-            SensorManager.getRotationMatrixFromVector(rMat, sensorEvent.values);
-            SensorManager.getOrientation(rMat, orientation);
-
-            rotX = Math.toDegrees(orientation[1]);
-            rotY = Math.toDegrees(orientation[2]);
-            rotZ = Math.toDegrees(orientation[0]);
         }
 
         if (isMfReceived && isOrientationReceived && isAcceReceived && isRotationVectorReceived && !isScanFinished) {
@@ -197,10 +246,12 @@ public class MagneticFieldHandler implements SensorEventListener {
             String convertedMaxTimestamp = timeStampHandler.convertTimestamp(maxTimestamp);
 
 
-            float[] vOrientation = orientationGyro.getOrientation();
-            gyroOrientationX = vOrientation[1];
-            gyroOrientationY = vOrientation[2];
-            gyroOrientationZ = vOrientation[0];
+            if (gyroSensor != null) {
+                float[] vOrientation = orientationGyro.getOrientation();
+                gyroOrientationX = vOrientation[1];
+                gyroOrientationY = vOrientation[2];
+                gyroOrientationZ = vOrientation[0];
+            }
 
             mfDataCsv =
                     MainActivity.coorX + "," +
