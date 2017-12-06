@@ -1,0 +1,7 @@
+#Tue Nov 07 11:38:27 CET 2017
+base.0=/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_1f4633c29caaba913f60f2f7a84289c5e2f038bd
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_dc2ac7a5a37b959bd2a8d4acdb09319782158e40/classes.dex
+base.1=/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_dc2ac7a5a37b959bd2a8d4acdb09319782158e40
+file.0=/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_1f4633c29caaba913f60f2f7a84289c5e2f038bd/classes.dex

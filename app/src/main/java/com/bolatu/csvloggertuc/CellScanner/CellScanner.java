@@ -44,7 +44,7 @@ public class CellScanner implements IHaltable {
     private int scanCounter = 0;
     private int scanCounterTimeout = 0;
 
-    private static final long CELL_MIN_UPDATE_TIME = 2000; // milliseconds
+    private static final long CELL_MIN_UPDATE_TIME = 200; // milliseconds
 
     private final Context mAppContext;
     private final Set<String> mVisibleCells = new HashSet<String>();
@@ -107,7 +107,6 @@ public class CellScanner implements IHaltable {
 
                     if (cells.isEmpty()) {
                         scanCounterTimeout++;
-                        return;
                     }
 
                     for (CellInfo cell : cells) {
@@ -122,10 +121,10 @@ public class CellScanner implements IHaltable {
 
                     scanCounter++;
 
-                    if (scanCounter >= MainActivity.scanNo) {
+                    if (scanCounter > MainActivity.scanNo) {
                         stop();
                     }
-                    else if (scanCounterTimeout == 15){
+                    else if (scanCounterTimeout > 20){
                         isScanSuccessfullyFinished = false;
                         stop();
                     }
@@ -163,6 +162,7 @@ public class CellScanner implements IHaltable {
         sortedCellScanResults.clear();
         isScanSuccessfullyFinished = true;
         scanCounter = 0;
+        scanCounterTimeout = 0;
     }
 
     public synchronized int getVisibleCellInfoCount() {

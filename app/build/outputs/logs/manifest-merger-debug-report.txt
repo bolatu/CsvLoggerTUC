@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:2:1-48:12
+ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:2:1-52:12
 	package
 		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:3:5-38
 		INJECTED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml
@@ -21,96 +21,100 @@ uses-permission#android.permission.BLUETOOTH_ADMIN
 ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:6:5-74
 	android:name
 		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:6:22-71
+uses-feature#android.hardware.bluetooth_le
+ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:9:5-89
+	android:required
+		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:9:64-87
+	android:name
+		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:9:19-63
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:7:5-81
+ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:11:5-81
 	android:name
-		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:7:22-78
+		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:11:22-78
 uses-permission#android.permission.READ_EXTERNAL_STORAGE
-ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:8:5-80
+ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:12:5-80
 	android:name
-		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:8:22-77
+		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:12:22-77
 uses-permission#android.permission.WRITE_SETTINGS
-ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:9:5-73
+ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:13:5-73
 	android:name
-		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:9:22-70
+		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:13:22-70
 uses-permission#android.permission.ACCESS_WIFI_STATE
-ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:11:5-76
+ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:15:5-76
 	android:name
-		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:11:22-73
+		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:15:22-73
 uses-permission#android.permission.CHANGE_WIFI_STATE
-ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:12:5-76
+ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:16:5-76
 	android:name
-		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:12:22-73
+		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:16:22-73
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:13:5-81
+ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:17:5-81
 	android:name
-		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:13:22-78
+		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:17:22-78
 uses-permission#android.permission.ACCESS_FINE_LOCATION
-ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:14:5-79
+ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:18:5-79
 	android:name
-		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:14:22-76
+		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:18:22-76
 uses-permission#android.permission.INTERNET
-ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:16:5-67
+ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:20:5-67
 	android:name
-		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:16:22-64
+		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:20:22-64
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:17:5-79
+ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:21:5-79
 	android:name
-		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:17:22-76
+		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:21:22-76
 uses-permission#com.google.android.providers.gsf.permission.READ_GSERVICES
-ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:18:5-98
+ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:22:5-98
 	android:name
-		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:18:22-95
+		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:22:22-95
 uses-permission#android.permission.READ_PHONE_STATE
-ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:20:5-91
+ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:24:5-91
 	android:name
-		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:20:22-72
+		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:24:22-72
 application
-ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:22:5-46:19
-MERGED from [com.android.support:appcompat-v7:23.1.0] /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:23.1.0] /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:23.1.0] /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/AndroidManifest.xml:22:5-20
+ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:26:5-50:19
+MERGED from [com.android.support:appcompat-v7:23.1.0] /home/bolatu/.android/build-cache/158793e5752ce6b5df4e3424ec92111a2f9dd5eb/output/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.1.0] /home/bolatu/.android/build-cache/7aa161637afa41ccb3a5b2fa0bd8ebed0717a0b4/output/AndroidManifest.xml:22:5-20
 	android:label
-		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:25:9-41
+		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:29:9-41
 	android:supportsRtl
-		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:26:9-35
+		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:30:9-35
 	android:allowBackup
-		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:23:9-35
+		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:27:9-35
 	android:icon
-		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:24:9-43
+		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:28:9-43
 	android:theme
-		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:27:9-65
+		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:31:9-65
 activity#com.bolatu.csvloggertuc.MainActivity
-ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:29:9-44:20
+ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:33:9-48:20
 	android:name
-		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:29:19-70
-intent-filter#android.intent.action.MAIN+android.intent.category.DEFAULT+android.intent.category.LAUNCHER+com.example.MozillaTUCMap
-ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:30:13-43:29
+		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:33:19-70
+intent-filter#android.intent.action.MAIN+android.intent.category.DEFAULT+android.intent.category.LAUNCHER+de.tuc.etit.sse.FingerprintingRequest
+ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:34:13-47:29
 action#android.intent.action.MAIN
-ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:31:17-69
+ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:35:17-69
 	android:name
-		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:31:25-66
+		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:35:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:33:17-77
+ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:37:17-77
 	android:name
-		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:33:27-74
-action#com.example.MozillaTUCMap
-ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:39:17-68
+		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:37:27-74
+action#de.tuc.etit.sse.FingerprintingRequest
+ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:43:17-80
 	android:name
-		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:39:25-65
+		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:43:25-77
 category#android.intent.category.DEFAULT
-ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:40:17-76
+ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:44:17-76
 	android:name
-		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:40:27-73
+		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:44:27-73
 data
-ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:41:17-54
+ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:45:17-54
 	android:mimeType
-		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:41:23-52
+		ADDED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml:45:23-52
 uses-sdk
 INJECTED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
-MERGED from [com.android.support:appcompat-v7:23.1.0] /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:23.1.0] /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:23.1.0] /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:appcompat-v7:23.1.0] /home/bolatu/.android/build-cache/158793e5752ce6b5df4e3424ec92111a2f9dd5eb/output/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.1.0] /home/bolatu/.android/build-cache/7aa161637afa41ccb3a5b2fa0bd8ebed0717a0b4/output/AndroidManifest.xml:20:5-43
 	android:targetSdkVersion
 		INJECTED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml
 		INJECTED from /home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/src/main/AndroidManifest.xml

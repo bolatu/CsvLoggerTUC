@@ -43,7 +43,7 @@ public class AccessPointParser {
         tempSortedScanResults = sortedScanResults;
 
         // Preparing the Wifi Header
-        String csvHeader = "Coor X,Coor Y,Floor,CURRENT TIME NANOSECONDS,CURRENT TIME STRING,";
+        String csvHeader = "Coor X,Coor Y,Floor,Ref Label,CURRENT TIME NANOSECONDS,CURRENT TIME STRING,";
         for (String sortedHashMapKey : sortedScanResults.keySet()) {
             csvHeader += sortedHashMapKey + ",";
         }
@@ -85,7 +85,7 @@ public class AccessPointParser {
         // converting sortedScanResults into csv format
         String rows = "";
         for (int i = 0; i < scanCounter; i++) {
-            rows += MainActivity.coorX + "," + MainActivity.coorY + "," + MainActivity.floor + "," + timeStampHolderNanoseconds.get(i) + "," + timeStampHolderString.get(i) + ",";
+            rows += MainActivity.coorX + "," + MainActivity.coorY + "," + MainActivity.floor + "," + MainActivity.refLabel + "," + timeStampHolderNanoseconds.get(i) + "," + timeStampHolderString.get(i) + ",";
             for (String ssid : sortedScanResults.keySet()) {
                 rows += sortedScanResults.get(ssid).get(i).get(i) + ",";
             }
@@ -111,6 +111,8 @@ public class AccessPointParser {
 
         LinkedHashMap<String, LinkedList<HashMap<Integer, String>>> tempSortedWifiScanResults;
 
+        boolean isSameRssiFound = false;
+
         // Converting the format into HashMap style, which is key = SSID, value = dB
         HashMap<String, String> currentWifiHashMap = new HashMap<>();
         for (int i = 0; i < wifiScanResultList.size(); i++) {
@@ -123,7 +125,7 @@ public class AccessPointParser {
             for (String currentWifiHashMapKey : currentWifiHashMap.keySet()) {
                 LinkedList tempSortedLinkedList = new LinkedList();
                 HashMap<Integer, String> tempHashMap = new HashMap<>();
-                tempHashMap.put(0, currentWifiHashMap.get(currentWifiHashMapKey));
+                tempHashMap.put(scanCounter, currentWifiHashMap.get(currentWifiHashMapKey));
                 tempSortedLinkedList.add(tempHashMap);
                 sortedScanResults.put(currentWifiHashMapKey, tempSortedLinkedList);
             }
@@ -136,8 +138,12 @@ public class AccessPointParser {
             for (String currentWifiHashMapKey : currentWifiHashMap.keySet()) {
 
 //                        Log.d("currentWifiHashMap", "iterating");
+                isSameRssiFound = false;
 
                 for (String sortedWifiScanResultsKey : sortedScanResults.keySet()) {
+
+                    if (isSameRssiFound)
+                        break;
 
                     if (sortedWifiScanResultsKey.equals(currentWifiHashMapKey)) {
 
@@ -151,8 +157,17 @@ public class AccessPointParser {
                         // updating the tempSortedLinkedList to able to iterate the sortedScanResults
                         tempSortedWifiScanResults.put(sortedWifiScanResultsKey, tempLinkedList);
 //                                Log.d("tempSortedWifiScanResults", "is updated");
+                        isSameRssiFound = true;
                     }
 
+                }
+
+                if(!isSameRssiFound){
+                    LinkedList tempSortedLinkedList = new LinkedList();
+                    HashMap<Integer, String> tempHashMap = new HashMap<>();
+                    tempHashMap.put(scanCounter, currentWifiHashMap.get(currentWifiHashMapKey));
+                    tempSortedLinkedList.add(tempHashMap);
+                    sortedScanResults.put(currentWifiHashMapKey, tempSortedLinkedList);
                 }
 
             }
@@ -180,12 +195,14 @@ public class AccessPointParser {
         // Converting the format into HashMap style, which is key = SSID, value = dB
         HashMap<String, String> currentBtHashMap = btScanResultList;
 
+        boolean isSameRssiFound = false;
+
         // if this is the first time of the scan, it needs to store the results into sortedScanResults.
         if (scanCounter == 0) {
             for (String currentBtHashMapKey : currentBtHashMap.keySet()) {
                 LinkedList tempSortedLinkedList = new LinkedList();
                 HashMap<Integer, String> tempHashMap = new HashMap<>();
-                tempHashMap.put(0, currentBtHashMap.get(currentBtHashMapKey));
+                tempHashMap.put(scanCounter, currentBtHashMap.get(currentBtHashMapKey));
                 tempSortedLinkedList.add(tempHashMap);
                 sortedScanResults.put(currentBtHashMapKey, tempSortedLinkedList);
             }
@@ -198,9 +215,14 @@ public class AccessPointParser {
             for (String currentBtHashMapKey : currentBtHashMap.keySet()) {
 
 //                        Log.d("currentWifiHashMap", "iterating");
+                isSameRssiFound = false;
 
                 for (String sortedBtScanResultsKey : sortedScanResults.keySet()) {
 
+                    if (isSameRssiFound)
+                        break;
+
+                    //check if there is already same rssi stored before
                     if (sortedBtScanResultsKey.equals(currentBtHashMapKey)) {
 
                         LinkedList tempLinkedList = sortedScanResults.get(sortedBtScanResultsKey);
@@ -213,8 +235,17 @@ public class AccessPointParser {
                         // updating the tempSortedLinkedList to able to iterate the sortedScanResults
                         tempSortedBtScanResults.put(sortedBtScanResultsKey, tempLinkedList);
 //                                Log.d("tempSortedWifiScanResults", "is updated");
+                        isSameRssiFound = true;
                     }
+                }
 
+                // if not, create one
+                if(!isSameRssiFound) {
+                    LinkedList tempSortedLinkedList = new LinkedList();
+                    HashMap<Integer, String> tempHashMap = new HashMap<>();
+                    tempHashMap.put(scanCounter, currentBtHashMap.get(currentBtHashMapKey));
+                    tempSortedLinkedList.add(tempHashMap);
+                    sortedScanResults.put(currentBtHashMapKey, tempSortedLinkedList);
                 }
 
             }

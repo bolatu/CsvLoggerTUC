@@ -92,7 +92,11 @@ public class WifiHandler {
             String action = intent.getAction();
             if (WifiManager.SCAN_RESULTS_AVAILABLE_ACTION.equals(action)) {
 
-                Log.d("WifiScanReceiver", "Wifi Scan is received");
+                if (WifiManager.EXTRA_NEW_RSSI.equals(action)) {
+                    Log.d("WifiScanReceiver", "newRSSI");
+                }
+
+                    Log.d("WifiScanReceiver", "Wifi Scan is received");
 
                 // Getting wifi scan results
                 List<ScanResult> currentWifiScanResultList = wifiManager.getScanResults();

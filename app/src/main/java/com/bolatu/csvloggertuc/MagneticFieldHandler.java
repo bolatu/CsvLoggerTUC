@@ -257,6 +257,7 @@ public class MagneticFieldHandler implements SensorEventListener {
                     MainActivity.coorX + "," +
                             MainActivity.coorY + "," +
                             MainActivity.floor + "," +
+                            MainActivity.refLabel + "," +
                             timeStampHandler.updateTimeNanoseconds() + "," +
                             timeStampHandler.updateTimeString() + "," +
                             maxTimestamp + "," +

@@ -47,13 +47,13 @@
             android:text="Y" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/textView5"
             android:layout_width="180dp"
             android:layout_height="30dp"
             android:layout_column="0"
-            android:layout_row="3"
+            android:layout_row="4"
             android:gravity="center"
-            android:text="Scan No" />
+            android:text="Ref Label" />
 
         <EditText
             android:id="@+id/editTextY"
@@ -68,14 +68,14 @@
             android:inputType="number" />
 
         <EditText
-            android:id="@+id/editTextScanNo"
+            android:id="@+id/editTextRefLabel"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_column="1"
             android:layout_columnSpan="2"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="20dp"
-            android:layout_row="3"
+            android:layout_row="4"
             android:ems="10"
             android:gravity="center"
             android:inputType="number" />
@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_column="1"
             android:layout_gravity="center_horizontal"
-            android:layout_row="4"
+            android:layout_row="5"
             android:checked="false"
             android:gravity="center"
             android:text="MF" />
@@ -98,23 +98,10 @@
             android:layout_column="0"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="10dp"
-            android:layout_row="4"
-            android:checked="false"
-            android:gravity="center"
-            android:text="WIFI" />
-
-        <CheckBox
-            android:id="@+id/checkBoxCell"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:layout_columnSpan="1"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="20dp"
             android:layout_row="5"
             android:checked="false"
             android:gravity="center"
-            android:text="Cell" />
+            android:text="WIFI" />
 
         <Button
             android:id="@+id/buttonStart"
@@ -123,31 +110,31 @@
             android:layout_column="0"
             android:layout_columnSpan="2"
             android:layout_gravity="center_horizontal"
-            android:layout_row="6"
+            android:layout_row="8"
             android:text="START" />
 
         <ListView
             android:id="@+id/listView"
             android:layout_width="wrap_content"
-            android:layout_height="182dp"
+            android:layout_height="match_parent"
             android:layout_column="0"
             android:layout_columnSpan="2"
             android:layout_marginBottom="30dp"
             android:layout_marginTop="30dp"
-            android:layout_row="7" />
+            android:layout_row="9" />
 
         <CheckBox
             android:id="@+id/checkBoxBt"
-            android:layout_width="80dp"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:layout_column="0"
             android:layout_columnSpan="1"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="20dp"
-            android:layout_row="5"
+            android:layout_row="6"
             android:checked="false"
             android:gravity="center"
-            android:text="BT" />
+            android:text="BT_Classic" />
 
         <TextView
             android:id="@+id/textView4"
@@ -169,6 +156,54 @@
             android:ems="10"
             android:gravity="center"
             android:inputType="number" />
+
+        <CheckBox
+            android:id="@+id/checkBoxCell"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:layout_row="7"
+            android:checked="false"
+            android:gravity="center"
+            android:text="Cell" />
+
+        <CheckBox
+            android:id="@+id/checkBoxBle"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_columnSpan="1"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:layout_row="6"
+            android:checked="false"
+            android:gravity="center"
+            android:text="BLE" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="180dp"
+            android:layout_height="30dp"
+            android:layout_column="0"
+            android:layout_row="3"
+            android:gravity="center"
+            android:text="Scan No" />
+
+        <EditText
+            android:id="@+id/editTextScanNo"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_columnSpan="2"
+            android:layout_gravity="center_horizontal"
+            android:layout_row="3"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="number" />
+
     </GridLayout>
 
 </RelativeLayout>

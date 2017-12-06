@@ -139,7 +139,8 @@ public class BluetoothHandler {
                     stopBtScan();
                 }
 
-            } else if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+            }
+            else if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 //bluetooth device found
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 int rssi = intent.getShortExtra(BluetoothDevice.EXTRA_RSSI,Short.MIN_VALUE);
@@ -151,14 +152,12 @@ public class BluetoothHandler {
                                 String.valueOf(rssi));
 
                 }
-
             }
+
         }
     };
 
-    //    public String getRawWifiScanResults() {
-//        return rawWifiScanResults;
-//    }
+
 
     public boolean isBtScanFinished() {
         return isBtScanFinished;

@@ -1,33 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
-    abi="armeabi-v7a,armeabi"
-    api-level="21"
-    density="xxxhdpi"
-    format="7"
-    timestamp="2005533180457"
-    token="1324235478876752925" >
+    abi="arm64-v8a,armeabi-v7a,armeabi"
+    api-level="23"
+    build-mode="COLD"
+    density="xxhdpi"
+    format="10"
+    plugin-version="2.3.3"
+    timestamp="1510052369760"
+    token="6612008628319412310"
+    verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="3099" />
+        duration="154" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="318" />
+        duration="6" />
     <task
         name="verifier"
-        duration="6" />
+        duration="2" />
 
     <artifact
-        location="/home/bolatu/AndroidStudioProjects/GezkonCsvLogger/app/build/outputs/apk/app-debug.apk"
-        type="MAIN" />
+        location="/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
+        type="SPLIT" />
+    <artifact
+        location="/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/outputs/apk/app-debug.apk"
+        type="SPLIT_MAIN" />
 
-    <build timestamp="2005533180457" >
+    <build
+        build-mode="FULL"
+        timestamp="1510051093859"
+        verifier="FULL_BUILD_REQUESTED" >
         <artifact
-            location="/home/bolatu/AndroidStudioProjects/GezkonCsvLogger/app/build/outputs/apk/app-debug.apk"
-            type="MAIN" />
+            location="/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
+            type="SPLIT" />
+        <artifact
+            location="/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/outputs/apk/app-debug.apk"
+            type="SPLIT_MAIN" />
+        <artifact
+            location="/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
+            type="SPLIT" />
+        <artifact
+            location="/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
+            type="SPLIT" />
+        <artifact
+            location="/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
+            type="SPLIT" />
+        <artifact
+            location="/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
+            type="SPLIT" />
+        <artifact
+            location="/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
+            type="SPLIT" />
+        <artifact
+            location="/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
+            type="SPLIT" />
+        <artifact
+            location="/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
+            type="SPLIT" />
+        <artifact
+            location="/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
+            type="SPLIT" />
+        <artifact
+            location="/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
+            type="SPLIT" />
+        <artifact
+            location="/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/split-apk/debug/dep/dependencies.apk"
+            type="SPLIT" />
+    </build>
+    <build
+        build-mode="COLD"
+        timestamp="1510051238386"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/outputs/apk/app-debug.apk"
+            type="SPLIT_MAIN" />
+    </build>
+    <build
+        build-mode="COLD"
+        timestamp="1510052369760"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
+            type="SPLIT" />
+        <artifact
+            location="/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/outputs/apk/app-debug.apk"
+            type="SPLIT_MAIN" />
     </build>
 
 </instant-run>

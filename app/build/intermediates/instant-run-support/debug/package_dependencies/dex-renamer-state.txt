@@ -1,0 +1,16 @@
+#Fri Oct 06 15:27:25 CEST 2017
+renamed.4=classes4.dex
+renamed.3=classes5.dex
+renamed.2=classes3.dex
+renamed.1=classes2.dex
+base.4=/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_d9983a42d7626261a560b37b4d0806bfa3662b3c
+renamed.0=classes.dex
+base.3=/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/transforms/dex/debug/folders/1000/2/commons-math3-3.5_09bbdc75933e2b011cf6bd81980bb9dd2e0409a4
+base.2=/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e43a73114e681f29d34fb7b628bbdb2b9536e9f9
+base.1=/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.1.0_f49e3cdece67d91c500fde87fe455f60aef28211
+base.0=/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.1.0_90ff62e47863d76148d83324b77a330b14d244da
+file.4=/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_d9983a42d7626261a560b37b4d0806bfa3662b3c/classes.dex
+file.3=/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/transforms/dex/debug/folders/1000/2/commons-math3-3.5_09bbdc75933e2b011cf6bd81980bb9dd2e0409a4/classes.dex
+file.2=/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e43a73114e681f29d34fb7b628bbdb2b9536e9f9/classes.dex
+file.1=/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.1.0_f49e3cdece67d91c500fde87fe455f60aef28211/classes.dex
+file.0=/home/bolatu/AndroidStudioProjects/CsvLoggerTUC/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.1.0_90ff62e47863d76148d83324b77a330b14d244da/classes.dex

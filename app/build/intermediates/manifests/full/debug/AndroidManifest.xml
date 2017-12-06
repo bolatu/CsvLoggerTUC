@@ -5,11 +5,16 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="17"
+        android:minSdkVersion="21"
         android:targetSdkVersion="23" />
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    // If you want to declare that your app is available to BLE-capable devices only
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="true" />
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
@@ -38,7 +43,7 @@
                 <!-- <category android:name="android.intent.category.DEFAULT"/> -->
                 <!-- <data android:mimeType="text/plain"/> -->
 
-                <action android:name="com.example.MozillaTUCMap" />
+                <action android:name="de.tuc.etit.sse.FingerprintingRequest" />
 
                 <category android:name="android.intent.category.DEFAULT" />
 

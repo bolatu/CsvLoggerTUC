@@ -35,10 +35,12 @@ public class MainActivity extends Activity {
     private EditText editTextY;
     private EditText editTextFloor;
     private EditText editTextScanNo;
+    private EditText editTextRefLabel;
     private CheckBox checkBoxWifi;
     private CheckBox checkBoxMf;
     private CheckBox checkBoxBt;
     private CheckBox checkBoxCell;
+    private CheckBox checkBoxBle;
 
     private NotificationSound notificationSound;
 
@@ -47,6 +49,7 @@ public class MainActivity extends Activity {
     public static double floor = 0.0;
 
     public static int scanNo = 1;
+    public static int refLabel = 0;
 
     // ListView
     private ListView listView;
@@ -58,7 +61,13 @@ public class MainActivity extends Activity {
     private MagneticFieldHandler magneticFieldHandler;
     private WifiHandler wifiHandler;
     private BluetoothHandler bluetoothHandler;
+    private BleHandler bleHandler;
+
     private CellScanner cellScanner;
+
+    final String MIME_TYPE = "text/plain";
+    final String FINGERPRINTING_ACTION = "de.tuc.etit.sse.FingerprintingRequest";
+
 
     // Creating Runnable to update the ListView periodically
     private Runnable runnableCode = new Runnable() {
@@ -70,62 +79,70 @@ public class MainActivity extends Activity {
                 listViewHolder.add(listViewContent[i]);
             }
 
-            if (magneticFieldHandler.isScanFinished() && wifiHandler.isWifiScanFinished() && bluetoothHandler.isBtScanFinished() &&
+            if (magneticFieldHandler.isScanFinished() &&
+                    wifiHandler.isWifiScanFinished() &&
+                    bluetoothHandler.isBtScanFinished() &&
+                    bleHandler.isBtScanFinished() &&
                     cellScanner.isScanFinished() && isTestRunning) {
+
+                // the scan is finished
+
                 buttonStart.setText("START");
                 isTestRunning = false;
                 listViewHandler.removeCallbacks(runnableCode);
-
-//                if (magneticFieldHandler.isScanSuccessfullyFinished() && wifiHandler.isScanSuccessfullyFinished() && bluetoothHandler.isScanSuccessfullyFinished()) {
                 notificationSound.playSuccessSound();
-//                }
-//                else{
-//                    notificationSound.playErrorSound();
-//                }
 
                 // Get the intent that started this activity
                 Intent finishIntent = getIntent();
                 String finishAction = finishIntent.getAction();
                 String finishType = finishIntent.getType();
-                if (finishAction.equals("com.example.MozillaTUCMap") && finishType != null) {
-                    Intent result = new Intent("com.example.MozillaTUCMap");
+                if (finishAction.equals(FINGERPRINTING_ACTION) && finishType != null) {
+                    Intent result = new Intent(FINGERPRINTING_ACTION);
                     if (magneticFieldHandler.isScanSuccessfullyFinished()){
                         result.putExtra("MF", "1");
                     }
-                    else if (!magneticFieldHandler.isScanSuccessfullyFinished() && !checkBoxMf.isChecked()){
+                    else if (!magneticFieldHandler.isScanSuccessfullyFinished() &&
+                            !checkBoxMf.isChecked()){
                         result.putExtra("MF", "0");
                     }
-                    else if (!magneticFieldHandler.isScanSuccessfullyFinished() && checkBoxMf.isChecked()){
+                    else if (!magneticFieldHandler.isScanSuccessfullyFinished() &&
+                            checkBoxMf.isChecked()){
                         result.putExtra("MF", "-1");
                     }
 
                     if (wifiHandler.isScanSuccessfullyFinished()){
                         result.putExtra("WIFI", "1");
                     }
-                    else if (!wifiHandler.isScanSuccessfullyFinished() && !checkBoxWifi.isChecked()){
+                    else if (!wifiHandler.isScanSuccessfullyFinished() && !
+                            checkBoxWifi.isChecked()){
                         result.putExtra("WIFI", "0");
                     }
-                    else if (!wifiHandler.isScanSuccessfullyFinished() && checkBoxWifi.isChecked()){
+                    else if (!wifiHandler.isScanSuccessfullyFinished() &&
+                            checkBoxWifi.isChecked()){
                         result.putExtra("WIFI", "-1");
                     }
 
                     if (bluetoothHandler.isScanSuccessfullyFinished()){
                         result.putExtra("BT", "1");
                     }
-                    else if (!bluetoothHandler.isScanSuccessfullyFinished() && !checkBoxBt.isChecked()){
+                    else if (!bluetoothHandler.isScanSuccessfullyFinished() &&
+                            !checkBoxBt.isChecked()){
                         result.putExtra("BT", "0");
                     }
-                    else if (!bluetoothHandler.isScanSuccessfullyFinished() && checkBoxBt.isChecked()){
+                    else if (!bluetoothHandler.isScanSuccessfullyFinished() &&
+                            checkBoxBt.isChecked()){
                         result.putExtra("BT", "-1");
                     }
 
                     if (cellScanner.isScanSuccessfullyFinished()){
                         result.putExtra("CELL", "1");
                     }
-                    else if (!cellScanner.isScanSuccessfullyFinished() && !checkBoxCell.isChecked()){
+                    else if (!cellScanner.isScanSuccessfullyFinished() &&
+                            !checkBoxCell.isChecked()){
                         result.putExtra("CELL", "0");
                     }
-                    else if (!cellScanner.isScanSuccessfullyFinished() && checkBoxCell.isChecked()){
+                    else if (!cellScanner.isScanSuccessfullyFinished() &&
+                            checkBoxCell.isChecked()){
                         result.putExtra("CELL", "-1");
                     }
                     setResult(Activity.RESULT_OK, result);
@@ -146,15 +163,12 @@ public class MainActivity extends Activity {
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
-//        // Get the intent that started this activity
-//        Intent intent = getIntent();
-//        String action = intent.getAction();
-//        String type = intent.getType();
-
 
         // If the Android version is 6.0 or higher, we have to take these stupid permission on runtime
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, 0x12345);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) !=
+                PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, 0x12345);
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -171,16 +185,19 @@ public class MainActivity extends Activity {
         editTextY = (EditText) findViewById(R.id.editTextY);
         editTextFloor = (EditText) findViewById(R.id.editTextFloor);
         editTextScanNo = (EditText) findViewById(R.id.editTextScanNo);
+        editTextRefLabel = (EditText) findViewById(R.id.editTextRefLabel);
         checkBoxWifi = (CheckBox) findViewById(R.id.checkBoxWifi);
         checkBoxMf = (CheckBox) findViewById(R.id.checkBoxMf);
         checkBoxBt = (CheckBox) findViewById(R.id.checkBoxBt);
         checkBoxCell = (CheckBox) findViewById(R.id.checkBoxCell);
+        checkBoxBle = (CheckBox) findViewById(R.id.checkBoxBle);
 
         notificationSound = new NotificationSound(getApplicationContext());
 
         magneticFieldHandler = new MagneticFieldHandler(getApplicationContext());
         wifiHandler = new WifiHandler(getApplicationContext());
         bluetoothHandler = new BluetoothHandler(getApplicationContext());
+        bleHandler = new BleHandler(getApplicationContext());
         cellScanner = new CellScanner(getApplicationContext());
 
         adapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_list_item_1, android.R.id.text1, listViewHolder);
@@ -191,8 +208,9 @@ public class MainActivity extends Activity {
         String startAction = startIntent.getAction();
         String startType = startIntent.getType();
 
-        if (startAction.equals("com.example.MozillaTUCMap") && startType != null) {
-            if ("text/plain".equals(startType)) {
+        // getting default selection from the map application
+        if (startAction.equals(FINGERPRINTING_ACTION) && startType != null) {
+            if (MIME_TYPE.equals(startType)) {
                 Log.d("DummyMapApp", "started this app!");
                 Log.d("DummyMapApp", startIntent.getExtras().getString("X"));
                 editTextX.setText(startIntent.getExtras().getString("X"));
@@ -210,9 +228,9 @@ public class MainActivity extends Activity {
                 }
 
                 if (startIntent.getExtras().getString("CB_BT").equals("1")) {
-                    checkBoxBt.setChecked(true);
+                    checkBoxBle.setChecked(true);
                 } else if (startIntent.getExtras().getString("CB_BT").equals("0")) {
-                    checkBoxBt.setChecked(false);
+                    checkBoxBle.setChecked(false);
                 } else {
                     Log.d("DummyMapApp", "Invalid CB type");
                 }
@@ -232,58 +250,6 @@ public class MainActivity extends Activity {
                 } else {
                     Log.d("DummyMapApp", "Invalid CB type");
                 }
-
-
-////                    //TODO: AUTOSTART -> copy pasted from buttonStart, beautify later!
-
-//                if (editTextX.getText().toString().equals("") || editTextY.getText().toString().equals("")
-//                        || editTextFloor.getText().toString().equals("") || editTextScanNo.getText().toString().equals("")) {
-//                    Toast.makeText(getApplicationContext(), "Yo! Don't Forget to Enter Coordinates!", Toast.LENGTH_LONG).show();
-//                } else if (!checkBoxWifi.isChecked() && !checkBoxMf.isChecked() && !checkBoxBt.isChecked() && !checkBoxCell.isChecked()) {
-//                    Toast.makeText(getApplicationContext(), "Yo! Don't Forget to Choose Test Type!", Toast.LENGTH_LONG).show();
-//                } else {
-//                    buttonStart.setText("Cancel Scanning!");
-////                        buttonStart.setEnabled(false);
-//
-//                    coorX = Double.parseDouble(editTextX.getText().toString());
-//                    coorY = Double.parseDouble(editTextY.getText().toString());
-//                    floor = Double.parseDouble(editTextFloor.getText().toString());
-//                    scanNo = Integer.parseInt(editTextScanNo.getText().toString());
-//
-//                    if (checkBoxCell.isChecked()) {
-//                        cellScanner.start();
-//                    } else {
-//                        cellScanner.setScanFinished(true);
-//                        cellScanner.setScanSuccessfullyFinished(false);
-//                    }
-//
-//                    if (checkBoxMf.isChecked()) {
-//                        magneticFieldHandler.startMfScan();
-//                    } else {
-//                        magneticFieldHandler.setScanFinished(true);
-//                        magneticFieldHandler.setScanSuccessfullyFinished(false);
-//                    }
-//
-//                    if (checkBoxWifi.isChecked()) {
-//                        wifiHandler.startWifiScan();
-//                    } else {
-//                        wifiHandler.setWifiScanFinished(true);
-//                        wifiHandler.setScanSuccessfullyFinished(false);
-//                    }
-//
-//                    if (checkBoxBt.isChecked()) {
-//                        bluetoothHandler.startBtScan();
-//                    } else {
-//                        bluetoothHandler.setBtScanFinished(true);
-//                        bluetoothHandler.setScanSuccessfullyFinished(false);
-//                    }
-//
-//                    Toast.makeText(getApplicationContext(), "Yo! Don't move! It's scanning!", Toast.LENGTH_LONG).show();
-//
-//                    isTestRunning = true;
-//                    listViewHandler.post(runnableCode);
-//                }
-
             }
         }
 
@@ -310,22 +276,39 @@ public class MainActivity extends Activity {
                     if (checkBoxCell.isChecked()) {
                         cellScanner.stop();
                     }
+                    if (checkBoxBle.isChecked()){
+                        bluetoothHandler.stopBtScan();
+                    }
                     isTestRunning = false;
                     listViewHandler.removeCallbacks(runnableCode);
                 } else {
-                    if (editTextX.getText().toString().equals("") || editTextY.getText().toString().equals("")
-                            || editTextFloor.getText().toString().equals("") || editTextScanNo.getText().toString().equals("")) {
+                    if (editTextX.getText().toString().equals("") ||
+                            editTextY.getText().toString().equals("") ||
+                            editTextFloor.getText().toString().equals("") ||
+                            editTextScanNo.getText().toString().equals("") ||
+                            editTextRefLabel.getText().toString().equals(""))
+                    {
                         Toast.makeText(getApplicationContext(), "Yo! Don't Forget to Enter Coordinates!", Toast.LENGTH_LONG).show();
-                    } else if (!checkBoxWifi.isChecked() && !checkBoxMf.isChecked() && !checkBoxBt.isChecked() && !checkBoxCell.isChecked()) {
+                    }
+                    else if (!checkBoxWifi.isChecked() &&
+                            !checkBoxMf.isChecked() && !
+                            checkBoxBt.isChecked() &&
+                            !checkBoxCell.isChecked() &&
+                            !checkBoxBle.isChecked()) {
                         Toast.makeText(getApplicationContext(), "Yo! Don't Forget to Choose Test Type!", Toast.LENGTH_LONG).show();
-                    } else {
+                    }
+                    else if (checkBoxBle.isChecked() &&
+                            checkBoxBt.isChecked()){
+                        Toast.makeText(getApplicationContext(), "Yo! You cannot choose both Bluetooth Type", Toast.LENGTH_LONG).show();
+                    }
+                    else {
                         buttonStart.setText("Cancel Scanning!");
-//                        buttonStart.setEnabled(false);
 
                         coorX = Double.parseDouble(editTextX.getText().toString());
                         coorY = Double.parseDouble(editTextY.getText().toString());
                         floor = Double.parseDouble(editTextFloor.getText().toString());
                         scanNo = Integer.parseInt(editTextScanNo.getText().toString());
+                        refLabel = Integer.parseInt(editTextRefLabel.getText().toString());
 
                         if (checkBoxCell.isChecked()) {
                             cellScanner.start();
@@ -353,6 +336,13 @@ public class MainActivity extends Activity {
                         } else {
                             bluetoothHandler.setBtScanFinished(true);
                             bluetoothHandler.setScanSuccessfullyFinished(false);
+                        }
+
+                        if (checkBoxBle.isChecked()) {
+                            bleHandler.startBtScan();
+                        } else {
+                            bleHandler.setBtScanFinished(true);
+                            bleHandler.setScanSuccessfullyFinished(false);
                         }
 
                         Toast.makeText(getApplicationContext(), "Yo! Don't move! It's scanning!", Toast.LENGTH_LONG).show();
@@ -392,17 +382,21 @@ public class MainActivity extends Activity {
 
     public String[] getListViewContent() {
         String[] values = new String[]{
-                "ScanCounter MF/WIFI/BT/CELL: " + String.valueOf(magneticFieldHandler.getScanCounter()) + "/"
+                "ScanNo MF/WIFI/BT/BLE/CELL: \n"
+                        + String.valueOf(magneticFieldHandler.getScanCounter()) + "/"
                         + String.valueOf(wifiHandler.getScanCounter()) + "/"
                         + String.valueOf(bluetoothHandler.getScanCounter()) + "/"
+                        + String.valueOf(bleHandler.getScanCounter()) + "/"
                         + String.valueOf(cellScanner.getScanCounter()) + "\n",
+                "TimeOut MF/WIFI/BT/BLE/CELL: \n"
+                        + String.valueOf(bluetoothHandler.getScanCounterTimeout()) + "/"
+                        + String.valueOf(wifiHandler.getScanCounterTimeout()) + "/"
+                        + String.valueOf(bluetoothHandler.getScanCounterTimeout()) + "/"
+                        + String.valueOf(cellScanner.getScanCounterTimeout()) + "\n",
                 "LOCAL MF:" + "\n" +
                         "X: " + String.valueOf(magneticFieldHandler.getLocalMfX()) + "\n" +
                         "Y: " + String.valueOf(magneticFieldHandler.getLocalMfY()) + "\n" +
-                        "Z: " + String.valueOf(magneticFieldHandler.getLocalMfZ()),
-                "BtTimeout: " + String.valueOf(bluetoothHandler.getScanCounterTimeout()) + "\n",
-                "WifiTimeout: " + String.valueOf(wifiHandler.getScanCounterTimeout()) + "\n",
-                "CellTimeout: " + String.valueOf(cellScanner.getScanCounterTimeout()) + "\n"
+                        "Z: " + String.valueOf(magneticFieldHandler.getLocalMfZ()) + "\n"
         };
         return values;
     }
